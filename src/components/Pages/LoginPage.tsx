@@ -1,10 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import SpotifyButton from "../SpotifyButton/SpotifyButton";
+
 const LoginPage = () => {
+  const Login = () => {
+    console.log("Login");
+  };
   return (
     <View style={styles.parent}>
       <Text style={styles.text}>Login Page</Text>
-      <View></View>
+      <View>
+        <SpotifyButton
+          title="Login to Spotify"
+          onPress={Login}
+          marginV={24}
+          bgColor="#9290C3"
+          textColor="#ffffffff"
+          padH={24}
+        ></SpotifyButton>
+      </View>
     </View>
   );
 };

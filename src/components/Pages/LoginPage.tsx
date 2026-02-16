@@ -1,17 +1,32 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
+import { useSpotifyAuth } from "../../hooks/useSpotifyAuth";
 
 const LoginPage = () => {
-  const handleLogin = () => {
-    console.log("Login To Spotify clicked");
-  };
+  const { request, promptAsync, mutation } = useSpotifyAuth();
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>LoginPage</Text>
 
-      <SpotifyButton title="Spotify" onPress={handleLogin} />
+      {mutation.status === "pending" ? (
+        <ActivityIndicator size="large" color="#1DB954" />
+      ) : (
+        <SpotifyButton title="Login To Spotify" onPress={() => promptAsync()} />
+      )}
+
+      {mutation.isSuccess && (
+        <Text style={{ color: "#fff", marginTop: 20 }}>
+          Token: {mutation.data.access_token}
+        </Text>
+      )}
+
+      {mutation.isError && (
+        <Text style={{ color: "red", marginTop: 20 }}>
+          Error: {mutation.error?.message}
+        </Text>
+      )}
     </View>
   );
 };

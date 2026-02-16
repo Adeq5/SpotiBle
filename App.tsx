@@ -6,6 +6,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
 import NetInfo from "@react-native-community/netinfo";
 import { onlineManager } from "@tanstack/react-query";
+import * as AuthSession from "expo-auth-session";
 
 type RootStackParamList = {
   Login: undefined;
@@ -29,6 +30,12 @@ onlineManager.setEventListener((setOnline) =>
     setOnline(!!state.isConnected);
   }),
 );
+
+const redirectUri = AuthSession.makeRedirectUri({
+  scheme: "spotifyauth",
+});
+console.log(redirectUri);
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>

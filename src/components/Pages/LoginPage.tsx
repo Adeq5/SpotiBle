@@ -3,37 +3,33 @@ import { View, Text, StyleSheet } from "react-native";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
 
 const LoginPage = () => {
-  const Login = () => {
-    console.log("Login");
+  const handleLogin = () => {
+    console.log("Login To Spotify clicked");
   };
+
   return (
-    <View style={styles.parent}>
-      <Text style={styles.text}>Login Page</Text>
-      <View>
-        <SpotifyButton
-          title="Login to Spotify"
-          onPress={Login}
-          marginV={24}
-          bgColor="#9290C3"
-          textColor="#ffffffff"
-          padH={24}
-        ></SpotifyButton>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>LoginPage</Text>
+
+      <SpotifyButton title="Spotify" onPress={handleLogin} />
     </View>
   );
 };
-/* #070F2B, #1B1A55 #788585, #535C91, #9290C3*/
+
+export default LoginPage;
+
 const styles = StyleSheet.create({
-  parent: {
+  container: {
     flex: 1,
-    backgroundColor: "#070F2B",
+    justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 24,
-    paddingHorizontal: 12,
+    backgroundColor: "#121212",
+    padding: 20,
   },
-  text: {
-    color: "#ccd5daff",
-    fontSize: 24,
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#fff",
+    marginBottom: 30,
   },
 });
-export default LoginPage;

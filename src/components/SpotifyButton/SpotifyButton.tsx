@@ -1,50 +1,22 @@
 import React from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+
 interface SpotifyButtonProps {
   title: string;
-  bgColor?: string;
-  textColor?: string;
-  padV?: number;
-  padH?: number;
-  marginV?: number;
-  marginH?: number;
   onPress: () => void;
 }
-const SpotifyButton = ({
-  title,
-  bgColor,
-  textColor,
-  padV = 12,
-  padH = 12,
-  marginH = 0,
-  marginV = 0,
-  onPress,
-}: SpotifyButtonProps) => {
-  const styles = StyleSheet.create({
-    container: {
-      alignItems: "center",
-      justifyContent: "center",
-      marginVertical: marginV,
-      marginHorizontal: marginH,
-    },
-    button: {
-      alignItems: "center",
-      justifyContent: "center",
-      paddingVertical: padV,
-      paddingHorizontal: padH,
-      backgroundColor: bgColor,
-      borderRadius: 64,
-    },
-    buttonTitle: {
-      fontWeight: "bold",
-      fontSize: 16,
-      color: textColor,
-    },
-  });
 
+const SpotifyButton = ({ title, onPress }: SpotifyButtonProps) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
+        <FontAwesome
+          name="spotify"
+          size={22}
+          color="#fff"
+          style={styles.icon}
+        />
         <Text style={styles.buttonTitle}>{title}</Text>
       </Pressable>
     </View>
@@ -52,3 +24,30 @@ const SpotifyButton = ({
 };
 
 export default SpotifyButton;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  button: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#1DB954",
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 50,
+    width: "80%",
+  },
+  icon: {
+    marginRight: 10,
+  },
+  buttonTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#fff",
+    letterSpacing: 0.5,
+  },
+});
